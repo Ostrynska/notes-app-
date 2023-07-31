@@ -1,33 +1,24 @@
 import './App.css';
-import ActiveTable from './components/Table';
-import Header from './components/Header';
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
 
-// import Footer from './components/Footer';
+
+import {HomePage, AddNotePage, EditNotePage, ArchiveNotePage} from './pages/index'
+import Layout from './components/Layout';
 
 function App() {
   return (
     <>
-<Header/>
-    <main>
-      <section className="container-lg">
-<ActiveTable/>
-      </section>
-
-      {/* <section className="container-lg">
-        <table className="table table-category table-hover">
-          <thead className="thead">
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Note Category</th>
-              <th scope="col">Active</th>
-              <th scope="col">Archived</th>
-            </tr>
-          </thead>
-          <tbody id="tableBodyCategory"></tbody>
-        </table>
-        </section> */}
-            </main>
-{/* <Footer /> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path = "/add" element = {<AddNotePage />} />
+            <Route path = "/edit/:id" element = {<EditNotePage />} />
+            <Route path="/archive" element={<ArchiveNotePage />} />
+          </Route>
+            <Route path="*" element={<p>Path not resolved</p>} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
